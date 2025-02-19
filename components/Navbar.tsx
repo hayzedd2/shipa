@@ -1,13 +1,12 @@
 "use client";
 
 import React from "react";
-import { SidebarTrigger, useSidebar } from "./ui/sidebar";
+import { SidebarTrigger } from "./ui/sidebar";
 import { Button } from "./ui/button";
 import { Bell, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const Navbar = () => {
-  const { open, toggleSidebar } = useSidebar();
   const { theme, setTheme } = useTheme();
   return (
     <header className="flex h-14 shrink-0">
