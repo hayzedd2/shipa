@@ -31,6 +31,8 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --chart-color-1:#37BD8F;
+    --chart-color-2:#E0A347;
     --sidebar-background: #fafafa;
     --sidebar-foreground: #141414;
     --sidebar-primary: 240 5.9% 10%;
@@ -67,6 +69,8 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --chart-color-1:#37BD8F;
+    --chart-color-2:#E0A347;
     --sidebar-background: #171716;
     --sidebar-foreground: #c1c1c6;
     --sidebar-primary: 224.3 76.3% 48%;

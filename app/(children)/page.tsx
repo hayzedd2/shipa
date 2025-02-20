@@ -1,21 +1,22 @@
+import { ShipmentAnalyticsChart } from "@/components/ShipmentAnalyticsChart";
+import ShipmentTracking from "@/components/ShipmentTracking";
 import { Button } from "@/components/ui/button";
 import {
   ArrowDown,
   ArrowUp,
-  CircleArrowDown,
-  CircleArrowUp,
   PackageCheckIcon,
   PackageIcon,
-  PackageMinusIcon,
   PackageXIcon,
   RefreshCcw,
+  TrendingDownIcon,
+  TrendingUpIcon,
   TruckIcon,
 } from "lucide-react";
 
 export default function Home() {
   return (
     <section className="px-3 my-4">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  gap-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  gap-3">
         <div className="w-full border rounded-[12px]">
           <div className="p-3 dotted-down flex gap-2 items-center">
             <PackageIcon size={18} className="icon-color" />
@@ -37,7 +38,7 @@ export default function Home() {
             <TruckIcon size={18} className="icon-color" />
 
             <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-             Shipments in progress
+              Shipments in progress
             </h4>
           </div>
           <div className="px-3 my-3">
@@ -79,6 +80,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="flex gap-2 my-3">
+        <div className="w-full basis-[75%]  ">
+          {" "}
+          <ShipmentAnalyticsChart />
+        </div>
+        <div className="basis-[25%]">
+          <ShipmentTracking />
+        </div>
+      </div>
     </section>
   );
 }
@@ -93,13 +103,12 @@ const StatusPill = ({
   const color = type == "up" ? "text-green" : "text-red";
   const icon =
     type == "up" ? (
-      <ArrowUp size={16} className={color} />
+      <TrendingUpIcon size={16} className={color} />
     ) : (
-      <ArrowDown size={16} className={color} />
+      <TrendingDownIcon size={16} className={color} />
     );
   return (
-    <span className={`${color} inline-flex text-[14px]  font-[600]`}>
-      
+    <span className={`${color} inline-flex gap-1 text-[14px]  font-[600]`}>
       {icon} {digit}
     </span>
   );
