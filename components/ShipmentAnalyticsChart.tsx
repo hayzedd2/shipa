@@ -103,10 +103,9 @@ export function ShipmentAnalyticsChart() {
 
   return (
     <div className="border rounded-[12px]">
-      <div className="flex dotted-down px-5 py-4 items-center  sm:flex-row">
+      <div className="flex dotted-down px-5 py-3 items-center justify-between flex-wrap">
         <div className="flex gap-2  items-center">
           <ChartLineIcon size={18} className="icon-color" />
-
           <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
             Shipments analytics
           </h4>

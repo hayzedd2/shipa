@@ -1,4 +1,5 @@
 import { ShipmentAnalyticsChart } from "@/components/ShipmentAnalyticsChart";
+import ShipmentsTable from "@/components/ShipmentsTable";
 import ShipmentTracking from "@/components/ShipmentTracking";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +17,7 @@ import {
 export default function Home() {
   return (
     <section className="px-3 my-4">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-4  gap-3">
         <div className="w-full border rounded-[12px]">
           <div className="p-3 dotted-down flex gap-2 items-center">
             <PackageIcon size={18} className="icon-color" />
@@ -80,15 +81,20 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex gap-2 my-3">
-        <div className="w-full basis-[75%]  ">
-          {" "}
+    
+        <div className="w-full my-3">
           <ShipmentAnalyticsChart />
         </div>
-        <div className="basis-[25%]">
+    
+      <div className="flex gap-2 my-3 flex-wrap lg:flex-nowrap">
+          <div className="basis-[100%] lg:basis-[70%]">
+          <ShipmentsTable />
+           
+          </div>
+          <div className="basis-[100%] lg:basis-[30%]">
           <ShipmentTracking />
+          </div>
         </div>
-      </div>
     </section>
   );
 }

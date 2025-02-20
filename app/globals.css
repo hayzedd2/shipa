@@ -82,6 +82,9 @@
     --body-bg: #1c1c1b;
   }
 }
+body{
+  overflow-x: hidden
+}
 
 @layer base {
   * {
@@ -134,10 +137,23 @@
   color: rgb(16 185 129 / var(--tw-text-opacity));
 }
 
-.text-green {
+.text-green{
   color: rgb(20 199 132 / var(--tw-text-opacity));
 }
+.bg-green {
+  background-color: rgb(20 199 132 / var(--tw-text-opacity));
+}
 
-.text-red {
+.text-red
+ {
   color: rgb(245 72 66 / var(--tw-text-opacity));
+}
+.bg-red{
+  background-color: rgb(245 72 66 / var(--tw-text-opacity));
+}
+.text-yellow{
+  color: rgb(245 158 11 / var(--tw-text-opacity));
+}
+.bg-yellow{
+  background-color: rgb(245 158 11 / var(--tw-text-opacity));
 }
