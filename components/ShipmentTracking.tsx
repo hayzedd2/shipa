@@ -73,7 +73,7 @@ const routes: PkgRoute[] = [
 const ShipmentTracking = () => {
   return (
     <div className="border rounded-[12px]">
-      <div className="dotted-down px-5 py-4">
+      <div className="dotted-down px-3 py-4">
         <div className="flex gap-2 items-center">
           <PackageSearch size={18} className="icon-color" />
           <h4 className="font-[500] text-[15px] text-sidebar-foreground">
@@ -82,6 +82,41 @@ const ShipmentTracking = () => {
         </div>
       </div>
       <CardContent className="px-2 pt-0 pb-2">
+        <div className="w-full p-2 dotted-down text-sidebar-foreground">
+          <h6 className="font-[500] text-[17px]">#SVH-001</h6>
+          <h5 className="font-[500] text-[13px] text-muted-foreground">
+            Shipment details
+          </h5>
+        </div>
+        <div className="w-full p-2 space-y-3 dotted-down text-sidebar-foreground">
+          <div>
+            <h5 className="font-[500] text-[13px] text-muted-foreground">
+              Customer
+            </h5>
+            <h6 className=" text-[14px]">John doe</h6>
+          </div>
+          <div>
+            <h5 className="font-[500] text-[13px] text-muted-foreground">
+              Pickup
+            </h5>
+            <h6 className=" text-[14px]">Seattle</h6>
+          </div>
+          <div>
+            <h5 className="font-[500] text-[13px] text-muted-foreground">
+              Destination
+            </h5>
+            <h6 className=" text-[14px]">Wshington</h6>
+          </div>
+          <div>
+            <h5 className="font-[500] text-[13px] text-muted-foreground">
+              Status
+            </h5>
+            <div className="flex gap-1 items-center">
+          <div className="w-1 h-1 mt-[-3px] bg-red rounded-full"></div>
+          <p className="text-red font-[500]  text-[14px]">Cancelled</p>
+        </div>
+          </div>
+        </div>
         <ShippingTimeline />
       </CardContent>
     </div>
@@ -99,6 +134,10 @@ const ShippingTimeline = () => {
       ? states[0]
       : states[currentIndex + 1];
   };
+  // const isNext = (route: PackageState) => {
+  //   return states.indexOf(route) <= states.indexOf(pkgState);
+  // };
+
   React.useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -118,7 +157,7 @@ const ShippingTimeline = () => {
     return states.indexOf(state) <= states.indexOf(pkgState);
   };
   return (
-    <div className=" mt-4">
+    <div className=" my-5">
       <div className="space-y-5">
         {routes.map((route, i) => (
           <div key={route.state}>
@@ -130,12 +169,12 @@ const ShippingTimeline = () => {
                 {isComplete(route.state) ? (
                   <CircleCheckIcon size={16} className="icon-color" />
                 ) : (
-                  <LoaderCircleIcon size={16} className="animate-spin bg" />
+                  <CircleCheckIcon size={16} className="text-[#a3a3a3] bg" />
                 )}
 
                 {i < routes.length - 1 && (
                   <div
-                    className={`absolute left-1/2 top-5 w-0.5 h-10 -ml-px bg-[#dfdfdf] 
+                    className={`absolute left-1/2 top-5 w-0.5 h-10 -ml-px bg-[#dfdfdf]  dark:bg-[#a3a3a3]
                     `}
                   />
                 )}
@@ -162,11 +201,11 @@ const ShippingTimeline = () => {
           </div>
         ))}
       </div>
-      <div className="w-full mt-2">
+      {/* <div className="w-full mt-2">
         <Button className="w-full bg-sidebar-background" variant={"outline"}>
           See tracking details
         </Button>
-      </div>
+      </div> */}
       {/* <div className="mt-8 space-x-2">
         {routes.map((route) => (
           <button
