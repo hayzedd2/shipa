@@ -14,6 +14,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import { useOrders } from "@/store/useOrders";
 import {GetStatusBadge} from "@/helpers/getStatusBadge"
+import { useNotifications } from "@/store/useNotifications";
 
 
 
@@ -21,6 +22,13 @@ import {GetStatusBadge} from "@/helpers/getStatusBadge"
 export default function ShipmentsTable() {
   const [openModal, setOpenModal] = useState(false);
   const {orders, addOrder}= useOrders()
+  const sendNotification = useNotifications((s)=>s.sendNotification)
+  const [customerName, setCustomerName]= useState("")
+  const [pickup, setPickup]= useState("")
+  const [destination, setDestination]= useState("")
+  
+  
+
   return (
     <>
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
@@ -35,6 +43,17 @@ export default function ShipmentsTable() {
           onSubmit={(e) => {
             e.preventDefault();
             setOpenModal(false);
+            addOrder({
+                customer: customerName,
+                Pickup: pickup,
+                destination: destination,
+                status: "Pending",
+                date: new Date().toDateString(),
+            })
+            sendNotification({
+                message:`Your order was created succesfully with order number SVH-${(orders.length).toString().padStart(3,"0")}`,
+                type:"success"
+            })
           }}
           className="mt-3 space-y-4"
         >
@@ -44,6 +63,9 @@ export default function ShipmentsTable() {
             </label>
             <input
               type="text"
+              value={customerName}
+              required
+              onChange={(e)=>setCustomerName(e.target.value)}
               className="rounded-lg border bg-sidebar-background px-3 py-2"
               placeholder="John doe"
             />
@@ -54,6 +76,9 @@ export default function ShipmentsTable() {
             </label>
             <input
               type="text"
+              value={pickup}
+              onChange={(e)=>setPickup(e.target.value)}
+              required
               className="rounded-lg border bg-sidebar-background px-3 py-2 text-[14px]"
               placeholder="Boston"
             />
@@ -64,6 +89,9 @@ export default function ShipmentsTable() {
             </label>
             <input
               type="text"
+              value={destination}
+              onChange={(e)=>setDestination(e.target.value)}
+              required
               className="rounded-lg border bg-sidebar-background px-3 py-2 text-[14px]"
               placeholder="California"
             />

@@ -93,27 +93,27 @@ const ShipmentTracking = () => {
             <h5 className="font-[500] text-[13px] text-muted-foreground">
               Customer
             </h5>
-            <h6 className=" text-[14px]">John doe</h6>
+            <h6 className=" text-[14px]">Donald Trump</h6>
           </div>
           <div>
             <h5 className="font-[500] text-[13px] text-muted-foreground">
               Pickup
             </h5>
-            <h6 className=" text-[14px]">Seattle</h6>
+            <h6 className=" text-[14px]">California</h6>
           </div>
           <div>
             <h5 className="font-[500] text-[13px] text-muted-foreground">
               Destination
             </h5>
-            <h6 className=" text-[14px]">Wshington</h6>
+            <h6 className=" text-[14px]">Washington</h6>
           </div>
           <div>
             <h5 className="font-[500] text-[13px] text-muted-foreground">
               Status
             </h5>
             <div className="flex gap-1 items-center">
-          <div className="w-1 h-1 mt-[-3px] bg-red rounded-full"></div>
-          <p className="text-red font-[500]  text-[14px]">Cancelled</p>
+          <div className="w-1 h-1 mt-[-3px] bg-yellow rounded-full"></div>
+          <p className="text-yellow font-[500]  text-[14px]">Pending</p>
         </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ const ShippingTimeline = () => {
     if (isAutoCycling) {
       interval = setInterval(() => {
         setPkgState((current) => getNextState(current));
-      }, 3000);
+      }, 4000);
     }
     return () => {
       if (interval) {

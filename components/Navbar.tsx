@@ -9,21 +9,12 @@ import { useNotifications } from "@/store/useNotifications";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const notifications = useNotifications((s) => s.notifications);
+  const { notifications, deleteAllNotifications } = useNotifications();
   return (
     <header className="flex h-14 shrink-0">
       <div className="flex w-full justify-between items-center  gap-2 dotted-down px-3">
@@ -37,31 +28,46 @@ const Navbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger>
               {" "}
-              <Button variant="ghost" size="icon" className="h-7 w-7 ">
-                <div className="relative">
-                  {notifications.length > 0 && (
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 absolute z-50 right-0 top-[-4]"></div>
-                  )}
-                  <Bell />
-                </div>
-                <span className="sr-only">Toggle notifications</span>
-              </Button>
+              <div className="relative mr-2">
+                {notifications.length > 0 && (
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 absolute  z-50 right-0 top-[-4]"></div>
+                )}
+                <Bell  size={16}/>
+              </div>
+              <span className="sr-only">Toggle notifications</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-sidebar-background text-sidebar-foreground mx-3  w-[300px] rounded-[12px] p-0">
               <div className="py-2">
                 <div>
-                  <h2 className="font-[500] py-2 border-b px-3">Notifications ({notifications.length})</h2>
+                  <h2 className="font-[500] py-2 border-b px-3">
+                    Notifications ({notifications.length})
+                  </h2>
                 </div>
                 {notifications.length > 0 ? (
                   <div>
                     {notifications.map((notification, i) => (
-                      <h6 className={`${i != notifications.length -1 ? "dotted-down": ""} text-[13px] py-2 px-3`}>
+                      <h6
+                        className={`${
+                          i != notifications.length - 1 ? "dotted-down" : ""
+                        } text-[13px] py-2 px-3`}
+                      >
                         {notification.message}
                       </h6>
                     ))}
+                    <div className="w-full px-3 py-2">
+                      <Button
+                        size={"sm"}
+                        onClick={() => deleteAllNotifications()}
+                        className="w-full"
+                      >
+                        Delete all notifications
+                      </Button>
+                    </div>
                   </div>
                 ) : (
-                  <div>No notification for now</div>
+                  <div className="flex w-full px-3 py-2 items-center justify-center text-[14px] font-[500] text-muted-foreground">
+                    <h3>You have no pending notifications</h3>
+                  </div>
                 )}
               </div>
             </DropdownMenuContent>

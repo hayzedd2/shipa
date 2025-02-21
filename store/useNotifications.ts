@@ -12,13 +12,10 @@ interface notificationsStoreProps {
 export const useNotifications = create<notificationsStoreProps>((set) => ({
   notifications: [
     {
-      message: "Welcome to the dashboard, you can manage your shipments here",
+      message: "Welcome to the dashboard, you can manage your shipments here.",
       type: "success",
     },
-    {
-      message: "Welcome to the dashboard",
-      type: "success",
-    },
+    
   ],
   sendNotification: (notification) => {
     set((state) => ({
