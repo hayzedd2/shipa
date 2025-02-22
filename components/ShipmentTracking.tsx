@@ -9,7 +9,7 @@ import {
   LoaderIcon,
   PackageSearch,
 } from "lucide-react";
-import { Check, Package, Truck, Home, Box } from "lucide-react";
+import { Package, Truck, Home, Box } from "lucide-react";
 import { Button } from "./ui/button";
 
 type PackageState =
@@ -83,10 +83,10 @@ const ShipmentTracking = () => {
       </div>
       <CardContent className="px-2 pt-0 pb-2">
         <div className="w-full p-2 dotted-down text-sidebar-foreground">
-          <h6 className="font-[500] text-[17px]">#SVH-001</h6>
           <h5 className="font-[500] text-[13px] text-muted-foreground">
-            Shipment details
+            Shipment ID
           </h5>
+          <h6 className="font-[500] text-[17px]">#SVH-001</h6>
         </div>
         <div className="w-full p-2 space-y-3 dotted-down text-sidebar-foreground">
           <div>
@@ -112,9 +112,9 @@ const ShipmentTracking = () => {
               Status
             </h5>
             <div className="flex gap-1 items-center">
-          <div className="w-1 h-1 mt-[-3px] bg-yellow rounded-full"></div>
-          <p className="text-yellow font-[500]  text-[14px]">Pending</p>
-        </div>
+              <div className="w-1 h-1 mt-[-3px] bg-yellow rounded-full"></div>
+              <p className="text-yellow font-[500]  text-[14px]">Pending</p>
+            </div>
           </div>
         </div>
         <ShippingTimeline />
@@ -128,19 +128,19 @@ export default ShipmentTracking;
 const ShippingTimeline = () => {
   const [pkgState, setPkgState] = React.useState<PackageState>("processed");
   const [isAutoCycling, setIsAutoCycling] = React.useState(true);
+  const isNext = (route: PackageState) => {
+    const currentState = states.indexOf(pkgState);
+    return route == states[currentState + 1];
+  };
   const getNextState = (currentState: PackageState): PackageState => {
     const currentIndex = states.indexOf(currentState);
     return currentIndex === states.length - 1
       ? states[0]
       : states[currentIndex + 1];
   };
-  // const isNext = (route: PackageState) => {
-  //   return states.indexOf(route) <= states.indexOf(pkgState);
-  // };
 
   React.useEffect(() => {
     let interval: NodeJS.Timeout;
-
     if (isAutoCycling) {
       interval = setInterval(() => {
         setPkgState((current) => getNextState(current));
@@ -157,7 +157,7 @@ const ShippingTimeline = () => {
     return states.indexOf(state) <= states.indexOf(pkgState);
   };
   return (
-    <div className=" my-5">
+    <div className=" mt-5">
       <div className="space-y-5">
         {routes.map((route, i) => (
           <div key={route.state}>
@@ -166,12 +166,16 @@ const ShippingTimeline = () => {
                 className={`relative flex items-center justify-center w-5  h-5 shrink-0 rounded-full 
               `}
               >
-                {isComplete(route.state) ? (
-                  <CircleCheckIcon size={16} className="icon-color" />
+                {isNext(route.state) ? (
+                  <LoaderCircleIcon size={16} className="animate-spin" />
                 ) : (
-                  <CircleCheckIcon size={16} className="text-[#a3a3a3] bg" />
+                  <CircleCheckIcon
+                    size={16}
+                    className={`${
+                      isComplete(route.state) ? "icon-color" : "text-[#a3a3a3] "
+                    } `}
+                  />
                 )}
-
                 {i < routes.length - 1 && (
                   <div
                     className={`absolute left-1/2 top-5 w-0.5 h-10 -ml-px bg-[#dfdfdf]  dark:bg-[#a3a3a3]
@@ -200,28 +204,8 @@ const ShippingTimeline = () => {
             </div>
           </div>
         ))}
+        <Button className="w-full">See tracking details</Button>
       </div>
-      {/* <div className="w-full mt-2">
-        <Button className="w-full bg-sidebar-background" variant={"outline"}>
-          See tracking details
-        </Button>
-      </div> */}
-      {/* <div className="mt-8 space-x-2">
-        {routes.map((route) => (
-          <button
-            key={route.state}
-            onClick={() => setPkgState(route.state)}
-            className={`px-4 py-2 rounded
-              ${
-                pkgState === route.state
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-100 text-gray-600"
-              }`}
-          >
-            Set to {route.label}
-          </button>
-        ))}
-      </div> */}
     </div>
   );
 };

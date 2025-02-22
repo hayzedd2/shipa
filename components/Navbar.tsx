@@ -32,7 +32,7 @@ const Navbar = () => {
                 {notifications.length > 0 && (
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-600 absolute  z-50 right-0 top-[-4]"></div>
                 )}
-                <Bell  size={16}/>
+                <Bell size={16} />
               </div>
               <span className="sr-only">Toggle notifications</span>
             </DropdownMenuTrigger>
@@ -47,6 +47,7 @@ const Navbar = () => {
                   <div>
                     {notifications.map((notification, i) => (
                       <h6
+                        key={i}
                         className={`${
                           i != notifications.length - 1 ? "dotted-down" : ""
                         } text-[13px] py-2 px-3`}

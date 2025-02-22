@@ -12,7 +12,7 @@ import { PackagePlusIcon, ScrollTextIcon, XIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import Modal from "./Modal";
-import { useOrders } from "@/store/useOrders";
+import { useShipments } from "@/store/useShipments";
 import {GetStatusBadge} from "@/helpers/getStatusBadge"
 import { useNotifications } from "@/store/useNotifications";
 
@@ -21,7 +21,7 @@ import { useNotifications } from "@/store/useNotifications";
 
 export default function ShipmentsTable() {
   const [openModal, setOpenModal] = useState(false);
-  const {orders, addOrder}= useOrders()
+  const {shipments, addShipment}= useShipments()
   const sendNotification = useNotifications((s)=>s.sendNotification)
   const [customerName, setCustomerName]= useState("")
   const [pickup, setPickup]= useState("")
@@ -33,7 +33,7 @@ export default function ShipmentsTable() {
     <>
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
         <div className="flex justify-between gap-1 items-center">
-          <h4 className="text-[17px] font-[500]">Add Order</h4>
+          <h4 className="text-[17px] font-[500]">Add Shipment</h4>
           <Button variant="ghost" onClick={() => setOpenModal(false)}>
             <XIcon />
           </Button>
@@ -43,7 +43,7 @@ export default function ShipmentsTable() {
           onSubmit={(e) => {
             e.preventDefault();
             setOpenModal(false);
-            addOrder({
+            addShipment({
                 customer: customerName,
                 Pickup: pickup,
                 destination: destination,
@@ -51,7 +51,7 @@ export default function ShipmentsTable() {
                 date: new Date().toDateString(),
             })
             sendNotification({
-                message:`Your order was created succesfully with order number SVH-${(orders.length).toString().padStart(3,"0")}`,
+                message:`Your order was created succesfully with order number SVH-${(shipments.length).toString().padStart(3,"0")}`,
                 type:"success"
             })
           }}
@@ -98,7 +98,7 @@ export default function ShipmentsTable() {
           </div>
 
           <div className="flex w-full justify-end">
-            <Button>Add order</Button>
+            <Button>Add Shipment</Button>
           </div>
         </form>
       </Modal>
@@ -107,21 +107,21 @@ export default function ShipmentsTable() {
           <div className="flex gap-2 items-center">
             <ScrollTextIcon size={18} className="icon-color" />
             <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-              Orders
+              Shipments
             </h4>
           </div>
           <Button variant={"ghost"} onClick={() => setOpenModal(true)}>
             <PackagePlusIcon className="icon-color" />
-            <span className="mt-[2px] text-muted-foreground">Create order</span>
+            <span className="mt-[2px] text-muted-foreground">Create Shipment</span>
           </Button>
         </header>
 
         <div className="relative w-full  overflow-x-auto">
           <Table className="w-full table-fixed overflow-x-scroll">
-            <TableCaption>A list of your recent orders.</TableCaption>
+            <TableCaption>A list of your recent shipments.</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead>Order ID</TableHead>
+                <TableHead>Shipment ID</TableHead>
                 <TableHead>Customer</TableHead>
                 <TableHead>Pickup</TableHead>
                 <TableHead>Destination</TableHead>
@@ -130,7 +130,7 @@ export default function ShipmentsTable() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orders.map((order, i) => (
+              {shipments.map((order, i) => (
                 <TableRow key={i}>
                   <TableCell className="font-medium">{`SVH-${i
                     .toString()

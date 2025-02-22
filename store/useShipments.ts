@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
 type StatusT = "Delivered" | "Pending" | "Cancelled";
-type OrderT = {
+type shipmentsT = {
   customer: string;
   Pickup: string;
   destination: string;
   status: StatusT;
   date: string;
 };
-const orders: OrderT[] = [
+const shipments: shipmentsT[] = [
   {
     customer: "John Smith",
     Pickup: "Seattle",
@@ -46,15 +46,15 @@ const orders: OrderT[] = [
   },
 ];
 interface orderStoreProps {
-  orders: OrderT[];
-  addOrder: (order: OrderT) => void;
+  shipments: shipmentsT[];
+  addShipment: (shipment: shipmentsT) => void;
 }
 
-export const useOrders = create<orderStoreProps>((set) => ({
-  orders,
-  addOrder: (order) => {
+export const useShipments = create<orderStoreProps>((set) => ({
+  shipments,
+  addShipment: (shipment) => {
     set((state) => ({
-      orders: [...state.orders, order],
+      shipments: [...state.shipments, shipment],
     }));
   },
 }));
