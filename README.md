@@ -1,6 +1,4 @@
-Here’s the improved README in a properly formatted code block:  
 
-```md
 # 🚀 Shipa  
 
 A real-time **shipment tracking dashboard** that allows users to monitor their shipments, receive notifications, and visualize shipment analytics.  
