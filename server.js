@@ -22,7 +22,6 @@ wss.on("connection", (ws) => {
         state: states[currentIndex],
       })
     );
-
     currentIndex = (currentIndex + 1) % states.length;
   }, 4000);
 

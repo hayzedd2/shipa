@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { Package, Truck, Home, Box } from "lucide-react";
 import { Button } from "./ui/button";
-// import WebSocket from "ws";
+
 
 type PackageState =
   | "processed"
@@ -141,37 +141,37 @@ const ShippingTimeline = () => {
       : states[currentIndex + 1];
   };
 
+  React.useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isAutoCycling) {
+      interval = setInterval(() => {
+        setPkgState((current) => getNextState(current));
+      }, 4000);
+    }
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isAutoCycling]);
+
+// this is websocket implementation, but sadly vercel wont keep our server running so we cant use it on prod
   // React.useEffect(() => {
-  //   let interval: NodeJS.Timeout;
-  //   if (isAutoCycling) {
-  //     interval = setInterval(() => {
-  //       setPkgState((current) => getNextState(current));
-  //     }, 4000);
-  //   }
-  //   return () => {
-  //     if (interval) {
-  //       clearInterval(interval);
+  //   const socket = new WebSocket("ws://localhost:3001");
+  //   socket.onopen = () => {
+  //     console.log("Connected to WebSocket server");
+  //   };
+  //   socket.onmessage = (event) => {
+  //     const data = JSON.parse(event.data);
+  //     if(data.type =="stateUpdate"){
+  //       setPkgState(data.state)
   //     }
   //   };
-  // }, [isAutoCycling]);
 
-  React.useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3001");
-    socket.onopen = () => {
-      console.log("Connected to WebSocket server");
-    };
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if(data.type =="stateUpdate"){
-        setPkgState(data.state)
-      }
-      console.log("Received:", data);
-    };
-
-    socket.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-  }, []);
+  //   socket.onerror = (error) => {
+  //     console.error("WebSocket error:", error);
+  //   };
+  // }, []);
   const isComplete = (state: PackageState) => {
     return states.indexOf(state) <= states.indexOf(pkgState);
   };
