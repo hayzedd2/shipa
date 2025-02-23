@@ -33,12 +33,14 @@ export default function ShipmentsTable() {
     <>
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
         <div className="flex justify-between gap-1 items-center">
-          <h4 className="text-[17px] font-[500]">Add Shipment</h4>
-          <Button variant="ghost" onClick={() => setOpenModal(false)}>
+          <h4 data-testid="add-shipment-label" className="text-[17px] font-[500]">Add Shipment</h4>
+          
+          <Button variant="ghost" aria-label="close-btn" name="close-btn" onClick={() => setOpenModal(false)}>
             <XIcon />
           </Button>
         </div>
         <form
+        data-testid="add-shipment-form"
           action=""
           onSubmit={(e) => {
             e.preventDefault();
@@ -98,7 +100,7 @@ export default function ShipmentsTable() {
           </div>
 
           <div className="flex w-full justify-end">
-            <Button>Add Shipment</Button>
+            <Button data-testid="submit-shipment">Add Shipment</Button>
           </div>
         </form>
       </Modal>
@@ -110,7 +112,7 @@ export default function ShipmentsTable() {
               Shipments
             </h4>
           </div>
-          <Button variant={"ghost"} onClick={() => setOpenModal(true)}>
+          <Button data-testid="create-shipment" variant={"ghost"} onClick={() => setOpenModal(true)}>
             <PackagePlusIcon className="icon-color" />
             <span className="mt-[2px] text-muted-foreground">Create Shipment</span>
           </Button>

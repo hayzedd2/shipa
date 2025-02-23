@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SidebarTrigger } from "./ui/sidebar";
 import { Button } from "./ui/button";
 import { Bell, Moon, Sun } from "lucide-react";
@@ -15,6 +15,10 @@ import {
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const { notifications, deleteAllNotifications } = useNotifications();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <header className="flex h-14 shrink-0">
       <div className="flex w-full justify-between items-center  gap-2 dotted-down px-3">
@@ -73,14 +77,16 @@ const Navbar = () => {
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7"
-          >
-            {theme == "dark" ? <Sun /> : <Moon />}
-          </Button>
+          {mounted && (
+            <Button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
+            >
+              {theme === "dark" ? <Sun /> : <Moon />}
+            </Button>
+          )}
         </div>
       </div>
     </header>
