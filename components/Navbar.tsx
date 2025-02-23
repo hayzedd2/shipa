@@ -34,7 +34,7 @@ const Navbar = () => {
               {" "}
               <div className="relative mr-2">
                 {notifications.length > 0 && (
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 absolute  z-50 right-0 top-[-4]"></div>
+                  <div className="w-1.5 h-1.5 bg-[#0068d6] rounded-full dark:bg-[#52a8ff] absolute  z-50 right-0.5 top-[-2]"></div>
                 )}
                 <Bell size={16} />
               </div>

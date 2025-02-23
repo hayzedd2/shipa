@@ -18,7 +18,7 @@ const ShippingWidgets = () => {
           <PackageIcon size={18} className="icon-color" />
 
           <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-            Total shipments
+            Total
           </h4>
         </div>
         <div className="px-3 my-3">
@@ -34,7 +34,7 @@ const ShippingWidgets = () => {
           <TruckIcon size={18} className="icon-color" />
 
           <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-            Shipments in progress
+           In progress
           </h4>
         </div>
         <div className="px-3 my-3">
@@ -49,7 +49,7 @@ const ShippingWidgets = () => {
         <div className="p-3 dotted-down flex gap-2 items-center">
           <PackageCheckIcon size={18} className="icon-color" />
           <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-            Delivered Shipments
+            Delivered
           </h4>
         </div>
         <div className="px-3 my-3">
@@ -64,7 +64,7 @@ const ShippingWidgets = () => {
         <div className="p-3 dotted-down flex gap-2 items-center">
           <PackageXIcon size={18} className="icon-color" />
           <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-            Cancelled Shipments
+            Cancelled
           </h4>
         </div>
         <div className="px-3 my-3">

@@ -53,7 +53,7 @@ export default function ShipmentsTable() {
                 date: new Date().toDateString(),
             })
             sendNotification({
-                message:`Your order was created succesfully with order number SVH-${(shipments.length).toString().padStart(3,"0")}`,
+                message:`Your shipment was created succesfully with shipment ID SVH-${(shipments.length).toString().padStart(3,"0")}`,
                 type:"success"
             })
           }}

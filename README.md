@@ -8,7 +8,7 @@
 - Light/Dark mode
 - A notification system
 - Real time shipment tracking
-- Ability to see shipment status in real time as they change state e.g from warehouse to distribution center (this is currently using a local state for this, but can be upgraded to use webhooks)
+- Ability to see shipment status in real time as they change state e.g from warehouse to distribution center (this is currently using a local state for this, but can be upgraded to use websockets)
 
 ## Adding a shipment
 
@@ -26,7 +26,7 @@ addShipment({
 
 ```tsx
 sendNotification({
-  message: `Your order was created succesfully with order number SVH-${shipments.length
+  message: `Your shipment was created succesfully with shipment ID SVH-${shipments.length
     .toString()
     .padStart(3, "0")}`,
   type: "success",
