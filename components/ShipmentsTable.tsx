@@ -112,58 +112,62 @@ export default function ShipmentsTable() {
         </form>
       </Modal>
       <div className="border rounded-[12px] p-2 mt-3">
-  <header className="dotted-down px-2 py-3 flex items-center justify-between">
-    <div className="flex gap-2 items-center">
-      <ScrollTextIcon size={18} className="icon-color" />
-      <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
-        Shipments
-      </h4>
-    </div>
-    <Button
-      data-testid="create-shipment"
-      variant={"ghost"}
-      onClick={() => setOpenModal(true)}
-    >
-      <PackagePlusIcon className="icon-color" />
-      <span className="mt-[2px] text-muted-foreground">
-        Create Shipment
-      </span>
-    </Button>
-  </header>
-
-
-
-    <div className="max-w-[350px] md:max-w-none">  <Table >
-        {/* <TableCaption>A list of your recent shipments.</TableCaption> */}
-        <TableHeader>
-          <TableRow>
-            <TableHead className="whitespace-nowrap">Shipment ID</TableHead>
-            <TableHead className="whitespace-nowrap">Customer</TableHead>
-            <TableHead className="whitespace-nowrap">Pickup</TableHead>
-            <TableHead className="whitespace-nowrap">Destination</TableHead>
-            <TableHead className="whitespace-nowrap">Date</TableHead>
-            <TableHead className="whitespace-nowrap">Status</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {shipments.map((order, i) => (
-            <TableRow key={i}>
-              <TableCell className="font-medium">{`SVH-${i
-                .toString()
-                .padStart(3, "0")}`}</TableCell>
-              <TableCell className="whitespace-nowrap">{order.customer}</TableCell>
-              <TableCell className="whitespace-nowrap">{order.Pickup}</TableCell>
-              <TableCell className="whitespace-nowrap">{order.destination}</TableCell>
-              <TableCell className="whitespace-nowrap">{order.date}</TableCell>
-              <TableCell className="whitespace-nowrap">{GetStatusBadge(order.status)}</TableCell>
+        <header className="dotted-down px-2 py-3 flex items-center justify-between">
+          <div className="flex gap-2 items-center">
+            <ScrollTextIcon size={18} className="icon-color" />
+            <h4 className="font-[500] text-[15px] text-sidebar-foreground mt-[2px]">
+              Shipments
+            </h4>
+          </div>
+          <Button
+            data-testid="create-shipment"
+            variant={"ghost"}
+            onClick={() => setOpenModal(true)}
+          >
+            <PackagePlusIcon className="icon-color" />
+            <span className="mt-[2px] text-muted-foreground">
+              Create Shipment
+            </span>
+          </Button>
+        </header>{" "}
+        <Table>
+          {/* <TableCaption>A list of your recent shipments.</TableCaption> */}
+          <TableHeader>
+            <TableRow>
+              <TableHead   className="hidden lg:block">ID</TableHead>
+              <TableHead >Customer</TableHead>
+              <TableHead >Pickup</TableHead>
+              <TableHead >Destination</TableHead>
+              <TableHead className="hidden lg:block" >Date</TableHead>
+              <TableHead >Status</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table></div>
-    </div>
-
-
-
+          </TableHeader>
+          <TableBody>
+            {shipments.map((order, i) => (
+              <TableRow key={i}>
+                <TableCell  className="hidden lg:block">{`SVH-${i
+                  .toString()
+                  .padStart(3, "0")}`}</TableCell>
+                <TableCell >
+                  {order.customer}
+                </TableCell>
+                <TableCell >
+                  {order.Pickup}
+                </TableCell>
+                <TableCell >
+                  {order.destination}
+                </TableCell>
+                <TableCell className="hidden lg:block" >
+                  {order.date}
+                </TableCell>
+                <TableCell >
+                  {GetStatusBadge(order.status)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </>
   );
 }

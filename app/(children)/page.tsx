@@ -12,10 +12,8 @@ export default function Dashboard() {
         <ShippingWidgets />
       </div>
       <div className="w-full flex gap-2 my-3 flex-wrap lg:flex-nowrap">
-        <div className="basis-[100%]  lg:basis-[70%]">
-          
+        <div className="basis-[100%]  lg:basis-[70%]">    
           <ShipmentAnalyticsChart />
-
           <ShipmentsTable />
         </div>
         <div className="basis-[100%]  lg:basis-[30%]">
