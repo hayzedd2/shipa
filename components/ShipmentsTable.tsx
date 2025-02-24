@@ -131,19 +131,18 @@ export default function ShipmentsTable() {
     </Button>
   </header>
 
-  <div className=" ">
- 
-    <div>
-      <Table className="w-full">
-        <TableCaption>A list of your recent shipments.</TableCaption>
+
+
+    <div className="max-w-[350px] md:max-w-none">  <Table >
+        {/* <TableCaption>A list of your recent shipments.</TableCaption> */}
         <TableHeader>
           <TableRow>
-            <TableHead>Shipment ID</TableHead>
-            <TableHead>Customer</TableHead>
-            <TableHead>Pickup</TableHead>
-            <TableHead>Destination</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead className="whitespace-nowrap">Shipment ID</TableHead>
+            <TableHead className="whitespace-nowrap">Customer</TableHead>
+            <TableHead className="whitespace-nowrap">Pickup</TableHead>
+            <TableHead className="whitespace-nowrap">Destination</TableHead>
+            <TableHead className="whitespace-nowrap">Date</TableHead>
+            <TableHead className="whitespace-nowrap">Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -152,18 +151,18 @@ export default function ShipmentsTable() {
               <TableCell className="font-medium">{`SVH-${i
                 .toString()
                 .padStart(3, "0")}`}</TableCell>
-              <TableCell>{order.customer}</TableCell>
-              <TableCell>{order.Pickup}</TableCell>
-              <TableCell>{order.destination}</TableCell>
-              <TableCell>{order.date}</TableCell>
-              <TableCell>{GetStatusBadge(order.status)}</TableCell>
+              <TableCell className="whitespace-nowrap">{order.customer}</TableCell>
+              <TableCell className="whitespace-nowrap">{order.Pickup}</TableCell>
+              <TableCell className="whitespace-nowrap">{order.destination}</TableCell>
+              <TableCell className="whitespace-nowrap">{order.date}</TableCell>
+              <TableCell className="whitespace-nowrap">{GetStatusBadge(order.status)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table></div>
     </div>
-  </div>
-</div>
+
+
 
     </>
   );
