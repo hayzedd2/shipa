@@ -131,10 +131,10 @@ export default function ShipmentsTable() {
           </Button>
         </header>{" "}
         <Table>
-          {/* <TableCaption>A list of your recent shipments.</TableCaption> */}
+          <TableCaption>A list of your recent shipments.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead   className="hidden lg:block">ID</TableHead>
+              <TableHead  className="hidden lg:block">ID</TableHead>
               <TableHead >Customer</TableHead>
               <TableHead >Pickup</TableHead>
               <TableHead >Destination</TableHead>
@@ -145,7 +145,7 @@ export default function ShipmentsTable() {
           <TableBody>
             {shipments.map((order, i) => (
               <TableRow key={i}>
-                <TableCell  className="hidden lg:block">{`SVH-${i
+                <TableCell  className="hidden lg:flex">{`SVH-${i
                   .toString()
                   .padStart(3, "0")}`}</TableCell>
                 <TableCell >
@@ -157,7 +157,7 @@ export default function ShipmentsTable() {
                 <TableCell >
                   {order.destination}
                 </TableCell>
-                <TableCell className="hidden lg:block" >
+                <TableCell className="hidden lg:flex" >
                   {order.date}
                 </TableCell>
                 <TableCell >
